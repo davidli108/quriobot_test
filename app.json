@@ -1,0 +1,12 @@
+{
+  "name": "quriobot",
+  "displayName": "quriobot",
+  "expo": {
+    "name": "quriobot",
+    "slug": "quriobot",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
