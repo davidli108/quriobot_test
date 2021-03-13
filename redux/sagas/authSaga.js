@@ -3,18 +3,19 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { actions } from '../authSlice';
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 
 export function* handleLogin(action) {
   const { captchaMsg, userEmail, userPassword } = action.payload;
   const { setUserInfo } = actions;
   try {
     const response = yield axios.post('/login', {
-      password: 'Hellotortoise123!',
-      username: 'david.li.dev211@gmail.com',
+      password: userPassword,
+      username: userEmail,
       recaptcha_response: captchaMsg,
     });
     const { data } = response;
-    AsyncStorage.setItem('token', data.token);
+    yield AsyncStorage.setItem('token', data.token);
 
     yield put(setUserInfo(data.user));
   } catch (error) {
@@ -41,6 +42,6 @@ export function* handleFetchOrgans() {
     );
     yield put(setOrganisations(response.data.items));
   } catch (err) {
-    console.log(err);
+    console.log('33333', err);
   }
 }

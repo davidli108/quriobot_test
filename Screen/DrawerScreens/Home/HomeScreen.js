@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { actions as authActions } from '../../../redux/authSlice';
 import { actions as botActions } from '../../../redux/botSlice';
@@ -15,7 +16,7 @@ const HomeScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [curPage, setCurPage] = useState(0);
 
-  const { organisations: organs, loading: authLoading } = useSelector(
+  const { organisations: organs, loading: authLoading, userInfo } = useSelector(
     (state) => state.auth
   );
   const { loading: botLoading, botListInfo } = useSelector(
@@ -23,8 +24,10 @@ const HomeScreen = ({ navigation }) => {
   );
 
   useEffect(() => {
-    dispatch(authActions.getOrganisations({}));
-  }, []);
+    if (userInfo) {
+      dispatch(authActions.getOrganisations({}));
+    }
+  }, [userInfo]);
 
   useEffect(() => {
     setLoading(botLoading || authLoading);

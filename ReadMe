@@ -1,0 +1,12 @@
+Hello Anatoly,
+
+In this project, I used React Native and Redux/toolkit for state management.
+
+You can run as follow:
+ - Run `yarn install`
+ - Run `yarn start`
+ - Run `yarn android` on another command Prompt
+
+Please see screenshots folder in project.
+There are all screens of steps of this project.
+
