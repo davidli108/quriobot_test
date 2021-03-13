@@ -11,7 +11,7 @@ import { PAGE_SIZE } from '../../../constants';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [selOrg, setSelOrg] = useState('java');
+  const [selOrg, setSelOrg] = useState(null);
   const [loading, setLoading] = useState(false);
   const [curPage, setCurPage] = useState(0);
 
@@ -38,7 +38,8 @@ const HomeScreen = ({ navigation }) => {
   }, [organs, authLoading]);
 
   useEffect(() => {
-    dispatch(botActions.getBotList({ orgId: selOrg, pgNum: curPage }));
+    if (selOrg)
+      dispatch(botActions.getBotList({ orgId: selOrg, pgNum: curPage }));
   }, [curPage]);
 
   const handlePressRow = (botId) => {
@@ -109,11 +110,12 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   title: {
-    fontSize: 24,
-    marginLeft: 16,
-    marginTop: 16,
     color: 'black',
-    textDecorationLine: 'underline',
+    fontSize: 24,
+    marginTop: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    backgroundColor: '#ddd',
   },
 });
 

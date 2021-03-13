@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import dayjs from 'dayjs';
 
@@ -28,6 +28,7 @@ const BotResponseScreen = ({ navigation, route }) => {
   return (
     <>
       <Loader loading={loading} />
+      <Text style={styles.title}>Bot Responses</Text>
       <DataTable>
         <DataTable.Header>
           <DataTable.Title>Id</DataTable.Title>
@@ -65,4 +66,14 @@ const BotResponseScreen = ({ navigation, route }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+    color: 'black',
+    marginTop: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    backgroundColor: '#ddd',
+  },
+});
 export default BotResponseScreen;

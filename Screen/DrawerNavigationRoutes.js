@@ -8,6 +8,7 @@ import { Icon } from 'react-native-elements';
 import HomeScreen from './DrawerScreens/Home/HomeScreen';
 import BotResponseScreen from './DrawerScreens/Home/BotReponseScreen';
 import ResponseDetailScreen from './DrawerScreens/Home/ResponseDetailScreen';
+import ChatScreen from './ChatScreen';
 import CustomSidebarMenu from '../components/CustomSidebarMenu';
 import NavigationDrawerHeader from '../components/NavigationDrawerHeader';
 
@@ -112,6 +113,11 @@ const DrawerNavigatorRoutes = (props) => {
         name='homeScreenStack'
         options={{ drawerLabel: 'Dashboard' }}
         component={homeScreenStack}
+      />
+      <Drawer.Screen
+        name='chatScreen'
+        options={{ drawerLabel: 'Chat' }}
+        component={ChatScreen}
       />
     </Drawer.Navigator>
   );

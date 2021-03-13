@@ -32,25 +32,29 @@ const ResponseDetailScreen = ({ navigation, route }) => {
     <>
       <Text style={styles.title}>Overall info</Text>
       <DataTable>
-        {responseInfoFields.map((field, _i) => (
-          <DataTable.Row key={_i}>
-            <DataTable.Cell>{field[0]}</DataTable.Cell>
-            <DataTable.Cell>
-              {field[1] === 'start' || field[1] === 'stop'
-                ? dayjs(response.table[field[1]].text).format(
-                    'MMM D, YYYY hh:mm A'
-                  )
-                : response.table[field[1]].text}
-            </DataTable.Cell>
-          </DataTable.Row>
-        ))}
+        {response
+          ? responseInfoFields.map((field, _i) => (
+              <DataTable.Row key={_i}>
+                <DataTable.Cell>{field[0]}</DataTable.Cell>
+                <DataTable.Cell>
+                  {field[1] === 'start' || field[1] === 'stop'
+                    ? dayjs(response.table[field[1]]?.text).format(
+                        'MMM D, YYYY hh:mm A'
+                      )
+                    : response.table[field[1]]?.text}
+                </DataTable.Cell>
+              </DataTable.Row>
+            ))
+          : null}
       </DataTable>
       <Text style={styles.title}>Bot</Text>
       <DataTable>
-        <DataTable.Row>
-          <DataTable.Cell>Name</DataTable.Cell>
-          <DataTable.Cell>{response.bot.name}</DataTable.Cell>
-        </DataTable.Row>
+        {response ? (
+          <DataTable.Row>
+            <DataTable.Cell>Name</DataTable.Cell>
+            <DataTable.Cell>{response.bot.name}</DataTable.Cell>
+          </DataTable.Row>
+        ) : null}
       </DataTable>
     </>
   );
@@ -58,7 +62,7 @@ const ResponseDetailScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 32,
+    fontSize: 24,
     color: 'black',
     marginTop: 10,
     paddingVertical: 5,
