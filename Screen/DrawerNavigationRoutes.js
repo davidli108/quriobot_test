@@ -95,6 +95,30 @@ const homeScreenStack = ({ navigation }) => {
   );
 };
 
+const chatScreenStack = ({ navigation }) => {
+  return (
+    <Stack.Navigator initialRouteName='ChatScreen'>
+      <Stack.Screen
+        name='ChatList'
+        component={ChatScreen}
+        options={{
+          title: 'Chat Screen',
+          headerLeft: () => (
+            <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: '#4ba2f9',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const DrawerNavigatorRoutes = (props) => {
   return (
     <Drawer.Navigator
@@ -117,7 +141,7 @@ const DrawerNavigatorRoutes = (props) => {
       <Drawer.Screen
         name='chatScreen'
         options={{ drawerLabel: 'Chat' }}
-        component={ChatScreen}
+        component={chatScreenStack}
       />
     </Drawer.Navigator>
   );

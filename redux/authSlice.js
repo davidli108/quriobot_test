@@ -6,6 +6,7 @@ const authSlice = createSlice({
     userInfo: null,
     organisations: [],
     loading: false,
+    loggedIn: false,
   },
 
   reducers: {
@@ -13,6 +14,12 @@ const authSlice = createSlice({
       return {
         ...state,
         loading: true,
+      };
+    },
+    setLoggedIn(state, action) {
+      return {
+        ...state,
+        loggedIn: true,
       };
     },
     getOrganisations(state, action) {

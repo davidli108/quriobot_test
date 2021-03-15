@@ -42,6 +42,6 @@ export function* handleFetchOrgans() {
     );
     yield put(setOrganisations(response.data.items));
   } catch (err) {
-    console.log('33333', err);
+    console.log(err);
   }
 }

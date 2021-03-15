@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { ActivityIndicator, View, StyleSheet, Image } from 'react-native';
-
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { actions as authActions } from '../redux/authSlice';
+
 const SplashScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
-      AsyncStorage.getItem('token').then((value) =>
-        navigation.replace(value === null ? 'Auth' : 'DrawerNavigationRoutes')
-      );
+      AsyncStorage.getItem('token').then((value) => {
+        if (value) {
+          navigation.replace('DrawerNavigationRoutes');
+          dispatch(authActions.setLoggedIn());
+        }
+        navigation.replace('Auth');
+      });
     }, 1000);
   }, []);
 
